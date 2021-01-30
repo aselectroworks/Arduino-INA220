@@ -62,11 +62,11 @@ float INA220::readVoltage_mV() {
 }
 
 float INA220::readShuntVoltage() {
-    return readWord(INA220_ADDR_SHUNT_VOLTAGE) * 0.00001;
+    return (int16_t)(readWord(INA220_ADDR_SHUNT_VOLTAGE)) * 0.00001;
 }
 
 float INA220::readCurrent() {
-    return readWord(INA220_ADDR_CURRENT) * _current_LSB;
+    return (int16_t)(readWord(INA220_ADDR_CURRENT)) * _current_LSB;
 }
 float INA220::readCurrent_mA() { return readCurrent() * 1000; }
 float INA220::readCurrent_uA() { return readCurrent_mA() * 1000; }
