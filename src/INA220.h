@@ -68,6 +68,12 @@ typedef union {
     };
 } INA220_CONFIGURATION_REG;
 
+typedef enum {
+    I2C_CLOCK_100KHZ = 100000, 
+    I2C_CLOCK_400KHZ = 400000, 
+    I2C_CLOCK_1MHZ =  1000000, 
+} INA220_I2C_CLOCK_SPEED; 
+
 // Uncomment to enable debug messages
 #define INA220_DEBUG
 
@@ -106,6 +112,8 @@ class INA220 {
 
     void begin();
     void begin(float maxCurrent, float shuntResistance);
+
+    void setClockSpeed(INA220_I2C_CLOCK_SPEED speed); 
 
     void checkFlags(bool* ready, bool* overflow);
 

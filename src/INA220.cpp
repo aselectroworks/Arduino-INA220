@@ -45,6 +45,10 @@ void INA220::begin(float maxCurrent, float shuntResistance) {
     setCalibration(maxCurrent, shuntResistance);
 }
 
+void INA220::setClockSpeed(INA220_I2C_CLOCK_SPEED speed) {
+    Wire.setClock(speed);  
+}
+
 void INA220::checkFlags(bool* ready, bool* overflow) {
     uint16_t reg;
     reg = readWord(INA220_ADDR_BUS_VOLTAGE);
