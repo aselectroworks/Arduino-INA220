@@ -36,6 +36,8 @@ void INA220::begin() {
     } else {
         Wire.begin();
     }
+    
+    _conf = readConfig(); 
 }
 void INA220::begin(float maxCurrent, float shuntResistance) {
     begin();
