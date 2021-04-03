@@ -75,7 +75,7 @@ typedef enum {
 } INA220_I2C_CLOCK_SPEED; 
 
 // Uncomment to enable debug messages
-#define INA220_DEBUG
+//#define INA220_DEBUG
 
 // Define where debug output will be printed
 #define DEBUG_PRINTER Serial
@@ -83,18 +83,18 @@ typedef enum {
 // Setup debug printing macros
 #ifdef INA220_DEBUG
 #define DEBUG_PRINT(...) \
-    { DEBUG_PRINTER.print(__VA_ARGS__); }
+    { DEBUG_PRINTER.printf("[INA220(0x%02x)]: ", _deviceAddress); DEBUG_PRINTER.print(__VA_ARGS__); }
 #define DEBUG_PRINTLN(...) \
-    { DEBUG_PRINTER.println(__VA_ARGS__); }
+    { DEBUG_PRINTER.printf("[INA220(0x%02x)]: ", _deviceAddress); DEBUG_PRINTER.println(__VA_ARGS__); }
 #define DEBUG_PRINTF(...) \
-    { DEBUG_PRINTER.printf(__VA_ARGS__); }
+    { DEBUG_PRINTER.printf("[INA220(0x%02x)]: ", _deviceAddress); DEBUG_PRINTER.printf(__VA_ARGS__); }
 #else
-#define DEBUG_PRINT(...)
-{}
-#define DEBUG_PRINTLN(...)
-{}
-#define DEBUG_PRINTF(...)
-{}
+#define DEBUG_PRINT(...) \
+    {}
+#define DEBUG_PRINTLN(...) \
+    {}
+#define DEBUG_PRINTF(...) \
+    {}
 #endif
 
 /**************************************************************************/

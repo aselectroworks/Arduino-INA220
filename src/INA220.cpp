@@ -14,7 +14,7 @@ INA220::INA220(uint8_t deviceAddress) : _deviceAddress(deviceAddress) {
 #ifdef INA220_DEBUG
     DEBUG_PRINTER.begin(115200);
 #endif
-    DEBUG_PRINTLN("[INA220] Call Contructor");
+    DEBUG_PRINTLN("Call Contructor");
 }
 #ifdef ESP32 || ESP8266
 INA220::INA220(int8_t sda, int8_t scl, uint8_t deviceAddress)
@@ -22,14 +22,14 @@ INA220::INA220(int8_t sda, int8_t scl, uint8_t deviceAddress)
 #ifdef INA220_DEBUG
     DEBUG_PRINTER.begin(115200);
 #endif
-    DEBUG_PRINTLN("[INA220] Call Contructor");
+    DEBUG_PRINTLN("Call Contructor");
 }
 #endif
 
 INA220::~INA220() {}
 
 void INA220::begin() {
-    DEBUG_PRINTLN("[INA220] begin");
+    DEBUG_PRINTLN("begin");
     // Initialize I2C
     if (_sda != -1 && _scl != -1) {
         Wire.begin(_sda, _scl);
@@ -145,15 +145,12 @@ uint8_t INA220::readByte(uint8_t addr) {
 }
 void INA220::writeMultiByte(uint8_t addr, uint8_t* data, uint8_t size) {
     Wire.beginTransmission(_deviceAddress);
-    DEBUG_PRINT("writeI2C reg 0x")
-    DEBUG_PRINT(addr, HEX)
+    DEBUG_PRINTF("writeI2C reg 0x%02x\n", addr)
     Wire.write(addr);
     for (uint8_t i = 0; i < size; i++) {
-        DEBUG_PRINTF(" -> data[%d]:0x", i)
-        DEBUG_PRINT(data[i], HEX)
+        DEBUG_PRINTF(" -> data[%d]:0x%02x\n", i, data[i])
         Wire.write(data[i]);
     }
-    DEBUG_PRINTLN("");
     Wire.endTransmission();
 }
 void INA220::writeWord(uint8_t addr, uint16_t data) {
