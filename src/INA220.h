@@ -105,7 +105,7 @@ typedef enum {
 class INA220 {
    public:
     INA220(uint8_t deviceAddress);
-#ifdef ESP32 || ESP8266
+#if defined(ESP32) || defined(ESP8266)
     INA220(int8_t sda, int8_t scl, uint8_t deviceAddress);
 #endif
     virtual ~INA220();

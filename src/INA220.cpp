@@ -16,7 +16,7 @@ INA220::INA220(uint8_t deviceAddress) : _deviceAddress(deviceAddress) {
 #endif
     DEBUG_PRINTLN("Call Contructor");
 }
-#ifdef ESP32 || ESP8266
+#if defined(ESP32) || defined(ESP8266)
 INA220::INA220(int8_t sda, int8_t scl, uint8_t deviceAddress)
     : _sda(sda), _scl(scl), _deviceAddress(deviceAddress) {
 #ifdef INA220_DEBUG
