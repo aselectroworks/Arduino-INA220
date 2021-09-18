@@ -81,7 +81,7 @@ float INA220::readPower() {
     return readWord(INA220_ADDR_POWER) * _current_LSB * 20;
 }
 
-bool INA220::setCalibration(float maxCurrent, float shuntResistance) {
+void INA220::setCalibration(float maxCurrent, float shuntResistance) {
     _current_LSB = maxCurrent / 32767;
     uint16_t cal = (uint16_t)(0.04096 / (_current_LSB * shuntResistance));
     writeWord(INA220_ADDR_CALIBRATION, cal);
@@ -154,7 +154,7 @@ void INA220::writeMultiByte(uint8_t addr, uint8_t* data, uint8_t size) {
     Wire.endTransmission();
 }
 void INA220::writeWord(uint8_t addr, uint16_t data) {
-    uint8_t txData[2] = {data >> 8, (data & 0x00FF)};
+    uint8_t txData[2] = {(uint8_t)(data >> 8), (uint8_t)(data & 0x00FF)};
     writeMultiByte(addr, txData, 2);
 }
 void INA220::writeByte(uint8_t addr, uint8_t data) {

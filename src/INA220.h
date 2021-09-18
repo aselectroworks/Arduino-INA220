@@ -129,7 +129,7 @@ class INA220 {
 
     float readPower();
 
-    bool setCalibration(float maxCurrent, float shuntResistance);
+    void setCalibration(float maxCurrent, float shuntResistance);
     uint16_t readCalibration();
 
     INA220_CONFIGURATION_REG readConfig(void);
@@ -143,8 +143,8 @@ class INA220 {
     void writeModeSetting(MODE_SETTING_Enum val);
 
    private:
-    uint8_t _sda = -1;
-    uint8_t _scl = -1;
+    int8_t _sda = -1;
+    int8_t _scl = -1;
     uint8_t _deviceAddress;
     float _current_LSB;
     INA220_CONFIGURATION_REG _conf = {0x399F};
